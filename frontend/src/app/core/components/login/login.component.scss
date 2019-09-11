@@ -3,21 +3,16 @@
   width: 100%;
   height: 100%;
   position: fixed;
-  background-color: #e9e9e9;
+  background: url("/assets/img/dark-material-bg.jpg") 0 0/cover no-repeat;
   z-index: -2;
 }
 
-.bkg-logo {
-  width: 100%;
-  height: 250px;
-  position: fixed;
-  background-color: #263238;
-  z-index: -1;
-  border-bottom: solid 10px #f8d434;
+.header-logo {
+  margin: 10px auto;
 }
 
-.content {
-  margin: 0 10px;
+.header-logo img {
+  height: 50px;
 }
 
 .cmf-login {
@@ -53,8 +48,10 @@
 }
 
 .login-btn {
+  display: block;
   width: 100%;
-  margin-top: 20px;
+  max-width: 250px;
+  margin: 30px auto 0 auto;
   min-height: 37px;
 }
 
@@ -65,5 +62,16 @@
 
 .validation-error {
   font-size: 14px;
-  color: #f44336;
+  color: #343a40;
+  font-weight: 500;
+}
+
+.cmf-mat-btn.mat-flat-button {
+  background-color: #006fba;
+  color: #fff;
+  font-weight: 400;
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+  stroke: #fff;
 }

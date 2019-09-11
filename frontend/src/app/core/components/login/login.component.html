@@ -1,48 +1,50 @@
 <div class="bkg"></div>
-<div class="bkg-logo mat-elevation-z2"></div>
-<div class="container">
-  <div class="row content d-flex flex-column align-items-center">
+<div class="container-fluid">
+  <div class="row no-gutters d-flex flex-column align-items-center">
     <mat-card class="cmf-login">
-      <div class="container">
-        <div class="row d-flex flex-column">
-          <div class="container">
-            <div class="row d-flex flex-column login-form">
+      <div class="container-fluid">
+        <div class="row no-gutters d-flex flex-column">
+          <div class="container-fluid">
+            <div class="row no-gutters">
+              <div class="header-logo">
+                <img src="assets/img/cmf-corp.png" class="logo">
+              </div>
+            </div>
+            <div class="row no-gutters d-flex flex-column login-form">
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                  <div class="d-flex align-items-center justify-content-center">
-                    <mat-form-field class="username">
-                      <mat-label>Usuario</mat-label>
-                      <input matInput formControlName="username" [type]="'text'" autocomplete="off"
-                        [errorStateMatcher]="matcher">
-                      <i matSuffix class="material-icons user-icon">person</i>
-                      <mat-hint class="validation-error" *ngIf="submitted && username.hasError('required') && !error">
-                        El usuario es requerido.
-                      </mat-hint>
-                    </mat-form-field>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-center">
-                    <mat-form-field class="password">
-                      <mat-label>Contraseña</mat-label>
-                      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
-                        [errorStateMatcher]="matcher">
-                      <i matSuffix class="material-icons password-icon"
-                        (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</i>
-                      <mat-hint class="validation-error" *ngIf="submitted && password.hasError('required') && !error">
-                        La contraseña es requerida.
-                      </mat-hint>
-                      <mat-hint class="validation-error" *ngIf="error">
-                        Usuario o contraseña incorrectos.
-                      </mat-hint>
-                    </mat-form-field>
-                  </div>
-                  <button mat-flat-button class="cmf-mat-btn login-btn" type="submit">
-                    <span *ngIf="!loading">Ingresar</span>
-                    <mat-icon *ngIf="loading" class="loading-icon">
-                      <mat-spinner color="primary" diameter="20">
-                      </mat-spinner>
-                    </mat-icon>
-                  </button>
+                <div class="d-flex align-items-center justify-content-center">
+                  <mat-form-field class="username">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="username" [type]="'text'" autocomplete="off"
+                      [errorStateMatcher]="matcher">
+                    <i matSuffix class="material-icons user-icon">person</i>
+                    <mat-hint class="validation-error" *ngIf="submitted && username.hasError('required') && !error">
+                      El usuario es requerido.
+                    </mat-hint>
+                  </mat-form-field>
                 </div>
+                <div class="d-flex align-items-center justify-content-center">
+                  <mat-form-field class="password">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
+                      [errorStateMatcher]="matcher">
+                    <i matSuffix class="material-icons password-icon"
+                      (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</i>
+                    <mat-hint class="validation-error" *ngIf="submitted && password.hasError('required') && !error">
+                      La contraseña es requerida.
+                    </mat-hint>
+                    <mat-hint class="validation-error" *ngIf="error">
+                      Usuario o contraseña incorrectos.
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+                <button mat-flat-button class="cmf-mat-btn login-btn" type="submit">
+                  <span *ngIf="!loading">INGRESAR</span>
+                  <mat-icon *ngIf="loading" class="loading-icon">
+                    <mat-spinner color="primary" diameter="20">
+                    </mat-spinner>
+                  </mat-icon>
+                </button>
               </form>
             </div>
           </div>
