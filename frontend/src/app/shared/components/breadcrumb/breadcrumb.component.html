@@ -1,0 +1,7 @@
+<div class="fto-breadcrumb d-flex align-items-center">
+  <i class="fas fa-home home"></i>
+  <div *ngFor="let item of items; let last = last">
+    <i class="fas fa-angle-right arrow"></i>
+    <span class="fto-breadcrumb-item" [class.last-item]="last">{{ item | translate }}</span>
+  </div>
+</div>

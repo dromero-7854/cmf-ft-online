@@ -1,0 +1,51 @@
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-item:hover, .submenu-item:hover {
+  background-color: #039be5;
+}
+
+.menu-item .menu-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.menu-item .menu-icon.fas {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+
+.menu-item {
+  font-size: 13px;
+}
+
+.menu-title {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.menu-item .menu-expand-icon {
+  font-size: 15px;
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+}
+
+.submenu-item {
+  padding: 10px 0 10px 35px;
+  cursor: pointer;
+}
+
+.submenu-item .submenu-title {
+  font-size: 13px;
+}

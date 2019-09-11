@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { TranslateModule } from '@ngx-translate/core';
+import { AvatarModule } from 'ngx-avatar';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // interceptors
@@ -16,12 +17,18 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 // components
 import { LoginComponent } from './components/login/login.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { MenuItemsComponent } from './components/menu-items/menu-items.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     MainLayoutComponent,
     LoginComponent,
-    MainNavComponent
+    MainNavComponent,
+    MenuItemsComponent,
+    UserCardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,7 @@ import { MainNavComponent } from './components/main-nav/main-nav.component';
     RouterModule,
     NgxWebstorageModule.forRoot(),
     TranslateModule.forRoot(),
+    AvatarModule,
     SharedModule,
     HttpClientModule
   ],

@@ -3,6 +3,15 @@ export const locale = {
   data: {
     GENERAL: {
       SAVE: 'Save'
+    },
+    ADMIN: {
+      SETTINGS: 'Settings'
+    },
+    MENU: {
+      NEW_FT: 'New fixed term',
+      DASHBOARD: 'Dashboard',
+      SETTINGS: 'Settings',
+      LOGOUT: 'Logout'
     }
   }
 };

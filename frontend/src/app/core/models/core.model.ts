@@ -10,3 +10,13 @@ export enum Role {
   Admin = 'ROLE_ADMIN',
   SuperAdmin = 'ROLE_SUPER_ADMIN',
 }
+
+export interface MenuItem {
+  name: string;
+  expanded?: boolean;
+  disabled?: boolean;
+  icon?: string;
+  route?: string;
+  children?: MenuItem[];
+  role?: string[];
+}

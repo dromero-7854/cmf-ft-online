@@ -1,0 +1,21 @@
+<div class="menu-container" *ngFor="let item of menuItems" [ngClass]="{ 'menu-container-expanded': item.expanded }">
+  <div class="d-flex align-items-center menu-item" (click)="onClick(item)" matRipple [matRippleCentered]="centered">
+    <mat-icon class="menu-icon">{{item.icon}}</mat-icon>
+    <span class="menu-title">{{ item.name | translate }} </span>
+    <mat-icon *ngIf="item.children && item.children.length" class="menu-expand-icon"
+      [@indicatorRotate]="item.expanded ? 'expanded': 'collapsed'">chevron_right</mat-icon>
+  </div>
+  <div *ngIf="item.children && item.children.length > 0 && item.expanded">
+    <div *ngFor="let child of item.children" (click)="onClick(child)" class="submenu-item">
+      <span class="submenu-title">{{ child.name | translate }} </span>
+    </div>
+  </div>
+</div>
+<div routerLink="/back-office/admin-home" class="menu-item" matRipple [matRippleCentered]="centered">
+  <mat-icon class="menu-icon">settings</mat-icon>
+  <span class="menu-title">{{ 'MENU.SETTINGS' | translate }}</span>
+</div>
+<div (click)="logout()" class="menu-item" matRipple [matRippleCentered]="centered">
+  <mat-icon class="menu-icon">power_settings_new</mat-icon>
+  <span class="menu-title">{{ 'MENU.LOGOUT' | translate }}</span>
+</div>

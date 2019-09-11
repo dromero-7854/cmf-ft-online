@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <app-main-nav>
       <router-outlet></router-outlet>
     </app-main-nav>
+    <app-footer></app-footer>
   `,
   styles: []
 })

@@ -2,20 +2,25 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar id="menu-header">
+      <div class="header-logo-container">
+        <img src="assets/img/cmf-logo.png" class="logo">
+      </div>
+    </mat-toolbar>
+    <div class="app-name">
+      <span>Plazo Fijo Web</span>
+    </div>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <app-user-card></app-user-card>
+      <app-menu-items></app-menu-items>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar id="content-toolbar" color="primary">
+    <mat-toolbar id="content-toolbar" color="primary" class="mat-elevation-z2">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>ft-online</span>
       <span class="toolbar-spacer"></span>
       <mat-icon class="toolbar-icon" (click)="logout()">power_settings_new</mat-icon>
     </mat-toolbar>
