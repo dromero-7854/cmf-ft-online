@@ -8,7 +8,7 @@
       </div>
     </mat-toolbar>
     <div class="app-name">
-      <span>Plazo Fijo Web</span>
+      <span>PLAZO FIJO WEB</span>
     </div>
     <mat-nav-list>
       <app-user-card></app-user-card>
@@ -17,13 +17,17 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar id="content-toolbar" color="primary" class="mat-elevation-z2">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <img src="assets/img/cmf-blue-logo.png" *ngIf="!(drawer.opened)" class="logo">
-      <span class="toolbar-spacer"></span>
-      <mat-icon class="toolbar-icon" (click)="logout()">power_settings_new</mat-icon>
+      <div class="d-flex align-items-center w-100"
+        [ngClass]="{ 'justify-content-between': !(drawer.opened), 'justify-content-end': drawer.opened }">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+          *ngIf="(isHandset$ | async) && !(drawer.opened)">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <img src="assets/img/cmf-blue-logo.png" *ngIf="!(drawer.opened)" class="logo">
+        <button type="button" mat-icon-button (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
     <div class="sidenav-content">
       <ng-content></ng-content>

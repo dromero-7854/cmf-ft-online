@@ -13,7 +13,7 @@
             <div class="row no-gutters d-flex flex-column login-form">
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="d-flex align-items-center justify-content-center">
-                  <mat-form-field class="username">
+                  <mat-form-field class="username" appearance="fill">
                     <mat-label>Usuario</mat-label>
                     <input matInput formControlName="username" [type]="'text'" autocomplete="off"
                       [errorStateMatcher]="matcher">
@@ -24,7 +24,7 @@
                   </mat-form-field>
                 </div>
                 <div class="d-flex align-items-center justify-content-center">
-                  <mat-form-field class="password">
+                  <mat-form-field class="password" appearance="fill">
                     <mat-label>Contraseña</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
                       [errorStateMatcher]="matcher">
