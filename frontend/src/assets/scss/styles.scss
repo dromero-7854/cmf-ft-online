@@ -1,0 +1,21 @@
+@import "./abstract/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
+@import "./base/reset";
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+@import "./themes/mat-theme";
+@import "./components/mat-components";
+
+html, body {
+  height: 100%
+}
+
+body { 
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
+  margin: 0;
+}
