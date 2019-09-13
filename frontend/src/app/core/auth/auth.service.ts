@@ -16,7 +16,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 export class AuthService {
 
   static readonly LOGIN_URL = '/auth';
-  static readonly ADMIN_HOME_URL = '/back-office/admin-home';
+  static readonly ADMIN_HOME_URL = '/front-office/new-ft-deposit';
   static readonly TOKEN_STORAGE_KEY = 'token';
   static readonly USER_STORAGE_KEY = 'user';
 

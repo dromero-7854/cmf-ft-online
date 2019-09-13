@@ -1,0 +1,183 @@
+<div class="page-title">
+  <span>{{ 'FT_DEPOSIT.TITLE' | translate }}</span>
+</div>
+<div class="container-fluid w-100">
+  <div class="row no-gutters">
+    <div class="form-container mat-elevation-z2 w-100">
+      <form [formGroup]="fTDepositForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex flex-column align-items-center">
+          <div class="header w-100">
+            <div class="title">
+              <span>{{ 'FT_DEPOSIT.APPLICANT_DETAILS' | translate }}</span>
+            </div>
+          </div>
+          <div class="fields-container w-100">
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100">
+                <mat-form-field class="fullNameBussName w-100" appearance="fill">
+                  <mat-label>Nombre y apellido / Razón social</mat-label>
+                  <input matInput formControlName="fullNameBussName" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && fullNameBussName.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="cuit-cuil w-100" appearance="fill">
+                  <mat-label>CUIT/CUIL</mat-label>
+                  <input matInput formControlName="cuitCuil" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && cuitCuil.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="birthdate" appearance="fill">
+                  <mat-label>Fecha de nacimiento</mat-label>
+                  <input matInput formControlName="birthdate" [matDatepicker]="picker" autocomplete="off"
+                    [errorStateMatcher]="matcher" (click)="picker.open()" (dateInput)="dateChange($event)" readonly>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-hint class="validation-error" *ngIf="submitted && birthdate.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100">
+                <mat-form-field class="email w-100" appearance="fill">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && email.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="phone w-100" appearance="fill">
+                  <mat-label>Teléfono de contacto</mat-label>
+                  <input matInput formControlName="phone" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && phone.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100 mt-3 mb-3">
+                <mat-checkbox>Es una persona expuesta políticamente.</mat-checkbox>
+              </div>
+            </div>
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100 mb-3">
+                <mat-checkbox>Es sujeto obligado.</mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="header w-100">
+            <div class="title">
+              <span>Domicilio constituido para la inversión</span>
+            </div>
+          </div>
+          <div class="fields-container w-100">
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100">
+                <mat-form-field class="street w-100" appearance="fill">
+                  <mat-label>Calle</mat-label>
+                  <input matInput formControlName="street" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && street.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="number w-100" appearance="fill">
+                  <mat-label>Nro.</mat-label>
+                  <input matInput formControlName="number" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && number.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="zip-code w-100" appearance="fill">
+                  <mat-label>Cod. postal</mat-label>
+                  <input matInput formControlName="zipCode" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && zipCode.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100">
+                <mat-form-field class="place w-100" appearance="fill">
+                  <mat-label>Localidad</mat-label>
+                  <input matInput formControlName="place" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && place.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="state w-100" appearance="fill">
+                  <mat-label>Provincia</mat-label>
+                  <mat-select formControlName="state" [errorStateMatcher]="matcher">
+                    <mat-option *ngFor="let state of states" [value]="state.value">
+                      {{state.label}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-hint class="validation-error" *ngIf="submitted && state.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="header w-100">
+            <div class="title">
+              <span>Datos para la solicitud</span>
+            </div>
+          </div>
+          <div class="fields-container w-100">
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100 mb-3">
+                <mat-radio-group>
+                  <mat-radio-button value="1" class="ml-1 mr-3">Alias</mat-radio-button>
+                  <mat-radio-button value="2">CBU</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="fields-row">
+              <div class="d-flex flex-wrap align-items-center w-100">
+                <mat-form-field class="cbu w-100" appearance="fill">
+                  <mat-label>CBU</mat-label>
+                  <input matInput formControlName="cbu" [type]="'text'" autocomplete="off"
+                    [errorStateMatcher]="matcher">
+                  <mat-hint class="validation-error" *ngIf="submitted && cbu.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="ft-type w-100" appearance="fill">
+                  <mat-label>Tipo de plazo fijo</mat-label>
+                  <mat-select formControlName="ftType" [errorStateMatcher]="matcher">
+                    <mat-option *ngFor="let ftType of ftTypes" [value]="ftType.value">
+                      {{ftType.label}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-hint class="validation-error" *ngIf="submitted && ftType.hasError('required')">
+                    Campo requerido
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <button mat-flat-button class="cmf-mat-btn apply-btn" type="submit">
+            <span *ngIf="!loading">SOLICITAR</span>
+            <mat-icon *ngIf="loading" class="loading-icon">
+              <mat-spinner color="primary" diameter="20">
+              </mat-spinner>
+            </mat-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

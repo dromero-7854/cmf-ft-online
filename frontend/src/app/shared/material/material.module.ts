@@ -19,7 +19,9 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatRadioModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { MatRippleModule } from '@angular/material/core';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -46,7 +48,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatPaginatorModule,
     MatSortModule,
     MatRadioModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatRippleModule,
@@ -68,7 +72,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatPaginatorModule,
     MatSortModule,
     MatRadioModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

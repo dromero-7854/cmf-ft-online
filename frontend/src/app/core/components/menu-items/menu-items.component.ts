@@ -45,7 +45,7 @@ export class MenuItemsComponent implements OnInit {
   menuItems: MenuItem[] = [
     {
       name: 'MENU.NEW_FT',
-      route: '/back-office/admin-home',
+      route: '/front-office/new-ft-deposit',
       icon: 'assessment',
       children: [],
       expanded: false,

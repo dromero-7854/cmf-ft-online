@@ -1,0 +1,94 @@
+
+.page-title {
+  padding: 20px 0 20px 15px;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: #039be5;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.form-container {
+  border-radius: 4px;
+  max-width: 950px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.header .title {
+  margin: 15px;
+  font-size: 18px;
+  font-weight: 300;
+  border-bottom: solid 1px #039be5;
+}
+
+.fields-container .fields-row {
+  margin: 0 15px;
+}
+
+.fullNameBussName,
+.email,
+.street,
+.place,
+.cbu {
+  max-width: 410px;
+  margin-right: 20px;
+}
+
+.cuit-cuil,
+.phone,
+.number {
+  max-width: 250px;
+  margin-right: 20px;
+}
+
+.birthdate,
+.zip-code {
+  max-width: 220px;
+}
+
+.state,
+.ft-type {
+  max-width: 490px;
+}
+
+.mat-checkbox {
+  display: block;
+  width: 100%;
+}
+
+::ng-deep .mat-checkbox label {
+  white-space: normal !important;
+}
+
+::ng-deep .mat-checkbox-inner-container {
+  margin-top: 3px !important;
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+  stroke: #fff;
+}
+
+.validation-error {
+  font-size: 14px;
+  color: #343a40;
+  font-weight: 500;
+}
+
+.apply-btn {
+  display: block;
+  min-width: 250px;
+  margin: 10px auto 30px auto;
+  min-height: 37px;
+}
+
+.cmf-mat-btn.mat-flat-button {
+  background-color: #006fba;
+  color: #fff;
+  font-weight: 400;
+}
+
+mat-form-field.mat-form-field {
+  margin-bottom: 10px;
+}

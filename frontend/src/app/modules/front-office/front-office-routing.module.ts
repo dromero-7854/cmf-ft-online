@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 // dependencies
 import { Routes, RouterModule } from '@angular/router';
 // pages
-import { NewFixedTermDepositComponent } from './components/new-fixed-term-deposit/new-fixed-term-deposit.component';
+import { NewFTDepositComponent } from './components/new-ft-deposit/new-ft-deposit.component';
 
 const routes: Routes = [
   {
     path: 'new-ft-deposit',
-    component: NewFixedTermDepositComponent
+    component: NewFTDepositComponent
   }
 ];
 

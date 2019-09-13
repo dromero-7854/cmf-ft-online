@@ -5,11 +5,11 @@ import { FrontOfficeRoutingModule } from './front-office-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
 // components
-import { NewFixedTermDepositComponent } from './components/new-fixed-term-deposit/new-fixed-term-deposit.component';
+import { NewFTDepositComponent } from './components/new-ft-deposit/new-ft-deposit.component';
 
 @NgModule({
   declarations: [
-    NewFixedTermDepositComponent
+    NewFTDepositComponent
   ],
   imports: [
     FrontOfficeRoutingModule,

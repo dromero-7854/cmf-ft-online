@@ -8,7 +8,7 @@
 }
 
 .header-logo {
-  margin: 10px auto;
+  margin: 10px auto 15px auto;
 }
 
 .header-logo img {
@@ -50,8 +50,7 @@
 .login-btn {
   display: block;
   width: 100%;
-  max-width: 250px;
-  margin: 30px auto 0 auto;
+  margin: 20px auto 10px auto;
   min-height: 37px;
 }
 
@@ -61,9 +60,9 @@
 }
 
 .validation-error {
-  font-size: 14px;
+  font-size: 15px;
   color: #343a40;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .cmf-mat-btn.mat-flat-button {
