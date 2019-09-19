@@ -46,7 +46,7 @@ export class MenuItemsComponent implements OnInit {
     {
       name: 'MENU.NEW_FT',
       route: '/front-office/new-ft-deposit',
-      icon: 'assessment',
+      icon: 'assignment',
       children: [],
       expanded: false,
       role: [
@@ -54,9 +54,9 @@ export class MenuItemsComponent implements OnInit {
       ]
     },
     {
-      name: 'MENU.DASHBOARD',
+      name: 'MENU.MANAGE_REQUESTS',
       route: '/back-office/admin-home',
-      icon: 'dashboard',
+      icon: 'assessment',
       children: [],
       expanded: false,
       role: [

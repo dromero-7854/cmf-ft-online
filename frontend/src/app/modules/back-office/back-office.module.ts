@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
 // components
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
-import { SuperAdminHomeComponent } from './components/super-admin-home/super-admin-home.component';
+import { SuperAdminHomeComponent } from './components/super-admin-home/super-admin-home.component'
 
 @NgModule({
   declarations: [

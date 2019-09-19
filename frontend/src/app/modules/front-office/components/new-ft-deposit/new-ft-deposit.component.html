@@ -14,11 +14,11 @@
           <div class="fields-container w-100">
             <div class="fields-row">
               <div class="d-flex flex-wrap align-items-center w-100">
-                <mat-form-field class="fullNameBussName w-100" appearance="fill">
+                <mat-form-field class="fullNameBusinessName w-100" appearance="fill">
                   <mat-label>Nombre y apellido / Razón social</mat-label>
-                  <input matInput formControlName="fullNameBussName" [type]="'text'" autocomplete="off"
+                  <input matInput formControlName="fullNameBusinessName" [type]="'text'" autocomplete="off"
                     [errorStateMatcher]="matcher">
-                  <mat-hint class="validation-error" *ngIf="submitted && fullNameBussName.hasError('required')">
+                  <mat-hint class="validation-error" *ngIf="submitted && fullNameBusinessName.hasError('required')">
                     Campo requerido
                   </mat-hint>
                 </mat-form-field>

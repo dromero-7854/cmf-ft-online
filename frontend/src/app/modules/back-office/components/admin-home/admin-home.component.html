@@ -10,21 +10,304 @@
   <div class="modal-footer">
   </div>
 </ng-template>
-<app-breadcrumb [items]="['ADMIN.SETTINGS']"></app-breadcrumb>
-
-
-
-<!--
-<div class="container-fluid">
-  <div class="row">
-    <button mat-raised-button color="primary" (click)="open(content)" placement="bottom"
-      ngbTooltip="Open modal">Primary</button>
-  </div>
-  <div class="row" *ngIf="closeResult">
-    <pre>{{closeResult}}</pre>
-  </div>
-  <div class="row">
-    <button mat-raised-button color="primary">{{ 'GENERAL.SAVE' | translate }}</button>
-  </div>
+<div class="page-title">
+  <span>Administración de solicitudes</span>
 </div>
--->
+
+
+
+
+
+
+
+<div class="content-container">
+
+
+  <div class="d-flex align-items-center toolbar"
+    [ngClass]="{ 'justify-content-between': !isHandset, 'flex-wrap-reverse': isHandset }">
+    <div class="d-flex align-items-center search-container">
+      <mat-form-field class="search-input-field w-100">
+        <input matInput>
+      </mat-form-field>
+      <button mat-raised-button class="cmf-mat-btn search-btn">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <div class="d-flex align-items-center actions-container" [ngClass]="{ 'justify-content-end w-100': isHandset }">
+      <button mat-raised-button class="cmf-mat-btn filters-btn ml-3 mr-1">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <button mat-raised-button class="cmf-mat-btn filters-btn m-1">
+        <mat-icon>unarchive</mat-icon>
+      </button>
+      <button mat-raised-button class="cmf-mat-btn filters-btn ml-1" #menuTrigger="matMenuTrigger"
+        [matMenuTriggerFor]="columnsMenu">
+        <mat-icon>view_column</mat-icon>
+      </button>
+      <mat-menu #columnsMenu="matMenu" xPosition="before" class="columns-menu">
+        <div class="menu-container" (click)="stopPropagation($event)">
+          <div class="menu-title">
+            <span>Mostrar / Ocultar columnas</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="columns-list-container">
+            <mat-selection-list [(ngModel)]="selectedColumns" (selectionChange)="showHideColumns($event)">
+              <mat-list-option [checkboxPosition]="before" [disabled]="column.fixed" [value]="column.value"
+                *ngFor="let column of columns">
+                {{column.label}}
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="d-flex justify-content-center close-btn-container">
+            <button mat-raised-button class="cmf-mat-btn close-menu-btn"
+              (click)="menuTrigger.closeMenu()">Cerrar</button>
+          </div>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="table-container mat-elevation-z2">
+    <table mat-table [dataSource]="dataSource" [style.width.px]="[tableWidth]">
+
+      <ng-container matColumnDef="reqId">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Nro. solicitud</span>
+          </div>
+        </th>
+        <td mat-cell class="req-id-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.reqId}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-left mr-3">
+            <span>Estado</span>
+          </div>
+        </th>
+        <td mat-cell class="state-cell" *matCellDef="let req">
+          <div class="text-left mr-3">
+            <span>{{req.state}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="expirationDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-center ml-2 mr-2">
+            <span>Fecha de vencimiento</span>
+          </div>
+        </th>
+        <td mat-cell class="expiration-date-cell" *matCellDef="let req">
+          <div class="text-center ml-2 mr-2">
+            <span>{{req.expirationDate}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Importe total</span>
+          </div>
+        </th>
+        <td mat-cell class="total-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.total}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="pfRate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Tasa PF</span>
+          </div>
+        </th>
+        <td mat-cell class="pf-rate-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.pfRate}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="ftdId">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Nro. plazo fijo</span>
+          </div>
+        </th>
+        <td mat-cell class="ftd-id-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.ftdId}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="applicantName">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-left mr-3">
+            <span>Nombre completo / Razón social</span>
+          </div>
+        </th>
+        <td mat-cell class="applicant-name-cell" *matCellDef="let req">
+          <div class="applicant-name text-left mr-3">
+            <span>{{req.applicantName}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="pfReqRate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Tasa solicitud PF</span>
+          </div>
+        </th>
+        <td mat-cell class="pf-req-rate-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.pfReqRate}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="cuilCuit">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>CUIT / CUIL</span>
+          </div>
+        </th>
+        <td mat-cell class="cuil-cuit-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.cuilCuit}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-left mr-3">
+            <span>Email</span>
+          </div>
+        </th>
+        <td mat-cell class="email-cell" *matCellDef="let req">
+          <div class="email text-left mr-3">
+            <span>{{req.email}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="debin">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Nro. debin</span>
+          </div>
+        </th>
+        <td mat-cell class="debin-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.debin}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="debinState">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-left mr-3">
+            <span>Estado debin</span>
+          </div>
+        </th>
+        <td mat-cell class="debin-state-cell" *matCellDef="let req">
+          <div class="text-left mr-3">
+            <span>{{req.debinState}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="credin">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-right mr-3">
+            <span>Nro. credin</span>
+          </div>
+        </th>
+        <td mat-cell class="credin-cell" *matCellDef="let req">
+          <div class="text-right mr-3">
+            <span>{{req.credin}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="credinState">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-left mr-3">
+            <span>Nro. credin</span>
+          </div>
+        </th>
+        <td mat-cell class="credin-state-cell" *matCellDef="let req">
+          <div class="text-left mr-3">
+            <span>{{req.credinState}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="reqDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-center ml-2 mr-2">
+            <span>Fecha de la solicitud</span>
+          </div>
+        </th>
+        <td mat-cell class="req-date-cell" *matCellDef="let req">
+          <div class="text-center ml-2 mr-2">
+            <span>{{req.reqDate}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+
+
+
+</div>

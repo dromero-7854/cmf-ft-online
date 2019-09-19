@@ -46,7 +46,7 @@ export class NewFTDepositComponent implements OnInit {
   ]
 
   fTDepositForm = this.fb.group({
-    fullNameBussName: ['', [Validators.required]],
+    fullNameBusinessName: ['', [Validators.required]],
     cuitCuil: ['', [Validators.required]],
     birthdate: ['', [Validators.required]],
     phone: ['', [Validators.required]],
@@ -60,7 +60,7 @@ export class NewFTDepositComponent implements OnInit {
     ftType: ['', [Validators.required]],
   });
 
-  get fullNameBussName() { return this.fTDepositForm.get('fullNameBussName'); }
+  get fullNameBusinessName() { return this.fTDepositForm.get('fullNameBusinessName'); }
   get cuitCuil() { return this.fTDepositForm.get('cuitCuil'); }
   get birthdate() { return this.fTDepositForm.get('birthdate'); }
   get phone() { return this.fTDepositForm.get('phone'); }

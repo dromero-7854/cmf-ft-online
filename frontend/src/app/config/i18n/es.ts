@@ -9,7 +9,7 @@ export const locale = {
     },
     MENU: {
       NEW_FT: 'Solicitud de plazo fijo web',
-      DASHBOARD: 'Dashboard',
+      MANAGE_REQUESTS: 'Administrar las solicitudes',
       SETTINGS: 'Configuración',
       LOGOUT: 'Logout'
     },

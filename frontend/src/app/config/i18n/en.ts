@@ -9,7 +9,7 @@ export const locale = {
     },
     MENU: {
       NEW_FT: 'New fixed term',
-      DASHBOARD: 'Dashboard',
+      MANAGE_REQUESTS: 'Manage requests',
       SETTINGS: 'Settings',
       LOGOUT: 'Logout'
     },

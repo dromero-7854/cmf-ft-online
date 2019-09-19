@@ -13,7 +13,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class MainNavComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(['(max-width: 900px)'])
     .pipe(
       map(result => result.matches)
     );

@@ -1,0 +1,187 @@
+
+.page-title {
+  padding: 20px 0 20px 15px;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: #039be5;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.content-container {
+  margin: 10px;
+}
+
+.toolbar {
+  max-width: 950px;
+  margin: 0 auto 2px auto;
+  background-color: #f8f9fa;
+  padding: 0 10px;
+  border-radius: 4px 4px 0 0;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.search-btn {
+  margin-left: 10px;
+}
+
+::ng-deep .mat-menu-panel {
+  margin-top: 5px;
+  margin-right: -5px;
+}
+
+.menu-title {
+  text-align: center;
+  font-weight: 300;
+  padding: 0 0 5px 0;
+}
+
+.columns-list-container {
+  height: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+::ng-deep .mat-list-item .mat-list-item-content .mat-list-text {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 300;
+}
+
+.mat-list-item-disabled {
+  background-color: #fff;
+  color: gray !important;
+}
+
+.mat-list-item-disabled:hover {
+  background-color: #fff;
+}
+
+.close-btn-container {
+  margin-top: 7px;
+}
+
+.cmf-mat-btn.mat-flat-button {
+  background-color: #006fba;
+  color: #fff;
+}
+
+@media (max-width: 450px) {
+  
+  .actions-container {
+    margin-top: 10px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+.table-container {
+  max-width: 950px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: auto;
+}
+
+.req-id-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.state-cell {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.expiration-date-cell {
+  max-width: 140px;
+  min-width: 140px;
+}
+
+.total-cell {
+  max-width: 130px;
+  min-width: 130px;
+}
+
+.pf-rate-cell {
+  max-width: 70px;
+  min-width: 70px;
+}
+
+.ftd-id-cell {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.applicant-name-cell {
+  max-width: 320px;
+  min-width: 320px;
+}
+
+.applicant-name {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.pf-req-rate-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.cuil-cuit-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.email-cell {
+  max-width: 300px;
+  min-width: 300px;
+}
+
+.email {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.debin-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.debin-state-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.credin-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.credin-state-cell {
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.req-date-cell {
+  max-width: 160px;
+  min-width: 160px;
+}
