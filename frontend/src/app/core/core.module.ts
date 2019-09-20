@@ -3,11 +3,14 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { TranslateModule } from '@ngx-translate/core';
 import { AvatarModule } from 'ngx-avatar';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// services
+import { FakeApiService } from './http/fake-api/fake-api.service';
 // interceptors
 import { JwtTokenInterceptor } from './interceptors/jwt.token.interceptor';
 // services
@@ -34,6 +37,7 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
+    InMemoryWebApiModule.forRoot(FakeApiService, { passThruUnknownUrl: true }),
     NgxWebstorageModule.forRoot(),
     TranslateModule.forRoot(),
     AvatarModule,

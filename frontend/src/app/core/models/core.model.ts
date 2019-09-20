@@ -20,3 +20,21 @@ export interface MenuItem {
   children?: MenuItem[];
   role?: string[];
 }
+
+export interface FTRequest {
+  reqId: string;
+  state: string;
+  expirationDate: string;
+  total: string;
+  pfRate: string;
+  ftdId: string;
+  applicantName: string;
+  pfReqRate: string;
+  cuilCuit: string;
+  email: string;
+  debin: string;
+  debinState: string;
+  credin: string;
+  credinState: string;
+  reqDate: string;
+}

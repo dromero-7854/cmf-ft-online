@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // dependencies
-import { MatTableDataSource, MatSelectChange, MatSelectionListChange } from '@angular/material';
-import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { MatSelectionListChange, MatPaginator, MatSort } from '@angular/material';
+import { Subscription, merge } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+// data-source
+import { RequestsDataSource } from '../../../../core/data-source/request-data-source'
+// models
+import { FTRequest } from '../../../../core/models/core.model';
+// services
+import { BackOfficeApiService } from 'src/app/core/http/back-office-api/back-office-api.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -13,21 +18,29 @@ import { map } from 'rxjs/operators';
 })
 export class AdminHomeComponent implements OnInit {
 
-  tableWidth: number = 2200;
+  tableWidth: number = 2080;
   selectedColumns: string[] = ['reqId', 'state', 'expirationDate', 'total', 'pfRate', 'ftdId', 'applicantName', 'pfReqRate', 'cuilCuit', 'email', 'debin', 'debinState', 'credin', 'credinState', 'reqDate'];
-  columns: any[] = [{ label: 'Nro. solicitud', value: 'reqId', fixed: true, width: 120 }, { label: 'Estado', value: 'state', fixed: true, width: 100 }, { label: 'Fecha de vencimiento', value: 'expirationDate', fixed: true, width: 140 }, { label: 'Importe total', value: 'total', fixed: true, width: 130 }, { label: 'Tasa PF', value: 'pfRate', fixed: false, width: 70 }, { label: 'Nro. plazo fijo', value: 'ftdId', fixed: true, width: 100 }, { label: 'Nombre completo / Razón social', value: 'applicantName', fixed: true, width: 360 }, { label: 'Tasa solicitud PF', value: 'pfReqRate', fixed: false, width: 120 }, { label: 'CUIT / CUIL', value: 'cuilCuit', fixed: false, width: 120 }, { label: 'Email', value: 'email', fixed: false, width: 300 }, { label: 'Nro. Debin', value: 'debin', fixed: false, width: 120 }, { label: 'Estado debin', value: 'debinState', fixed: false, width: 100 }, { label: 'Nro. credin', value: 'credin', fixed: false, width: 120 }, { label: 'Estado credin', value: 'credinState', fixed: false, width: 100 }, { label: 'Fecha de la solicitud', value: 'reqDate', fixed: false, width: 160 }]
+  columns: any[] = [{ label: 'Nro. solicitud', value: 'reqId', fixed: true, width: 130 }, { label: 'Estado', value: 'state', fixed: true, width: 100 }, { label: 'Fecha de vencimiento', value: 'expirationDate', fixed: true, width: 160 }, { label: 'Importe total', value: 'total', fixed: true, width: 130 }, { label: 'Tasa PF', value: 'pfRate', fixed: false, width: 80 }, { label: 'Nro. plazo fijo', value: 'ftdId', fixed: true, width: 130 }, { label: 'Razón social', value: 'applicantName', fixed: true, width: 320 }, { label: 'Tasa solicitud PF', value: 'pfReqRate', fixed: false, width: 130 }, { label: 'CUIT / CUIL', value: 'cuilCuit', fixed: false, width: 120 }, { label: 'Email', value: 'email', fixed: false, width: 250 }, { label: 'Nro. Debin', value: 'debin', fixed: false, width: 120 }, { label: 'Estado debin', value: 'debinState', fixed: false, width: 120 }, { label: 'Nro. credin', value: 'credin', fixed: false, width: 120 }, { label: 'Estado credin', value: 'credinState', fixed: false, width: 120 }, { label: 'Fecha de la solicitud', value: 'reqDate', fixed: false, width: 170 }]
 
+  dataSource: RequestsDataSource;
   displayedColumns: string[] = ['reqId', 'state', 'expirationDate', 'total', 'pfRate', 'ftdId', 'applicantName', 'pfReqRate', 'cuilCuit', 'email', 'debin', 'debinState', 'credin', 'credinState', 'reqDate'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   isHandsetSubs: Subscription;
   isHandset: boolean = false;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  searchValue: string = '';
+
   constructor(
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private backOfficeApi: BackOfficeApiService
   ) { }
 
   ngOnInit() {
+    this.dataSource = new RequestsDataSource(this.backOfficeApi);
+    this.dataSource.loadRequests('', '', 'asc', 0, 30);
     this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 450px)'])
       .pipe(
         map(result => result.matches)
@@ -36,6 +49,34 @@ export class AdminHomeComponent implements OnInit {
           this.isHandset = match;
         }
       );
+  }
+
+  ngAfterViewInit() {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => this.loadLessonsPage())
+      )
+      .subscribe();
+  }
+
+  loadLessonsPage() {
+    this.dataSource.loadRequests(
+      this.searchValue,
+      this.sort.active,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
+  }
+
+  search() {
+    this.paginator.pageIndex = 0;
+    this.loadLessonsPage();
+  }
+
+  onRowClicked(row: FTRequest) {
+    console.log('Row clicked: ', row);
   }
 
   stopPropagation($event: Event): boolean {
@@ -54,67 +95,3 @@ export class AdminHomeComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-
-
-
-
-export interface FTRequest {
-  reqId: string;
-  state: string;
-  expirationDate: string;
-  total: string;
-  pfRate: string;
-  ftdId: string;
-  applicantName: string;
-  pfReqRate: string;
-  cuilCuit: string;
-  email: string;
-  debin: string;
-  debinState: string;
-  credin: string;
-  credinState: string;
-  reqDate: string;
-}
-
-
-const ELEMENT_DATA: FTRequest[] = [
-  {
-    reqId: '2265',
-    state: 'INGRESADA',
-    expirationDate: '16-09-2019',
-    total: '$ 15.600.000',
-    pfRate: '48%',
-    ftdId: '3366',
-    applicantName: 'Juan Carlos Gonzales',
-    pfReqRate: '48%',
-    cuilCuit: '20-12345678-6',
-    email: 'prueba@empresa.com.ar',
-    debin: 'N/A',
-    debinState: 'NO EMITIDO',
-    credin: 'N/A',
-    credinState: 'NO EMITIDO',
-    reqDate: '16 Ago 2019'
-  },
-  {
-    reqId: '999999999',
-    state: 'INGRESADA',
-    expirationDate: 'DD-MM-AAAA',
-    total: '$ 999.999.999,99',
-    pfRate: '100%',
-    ftdId: '999999999',
-    applicantName: 'Juan Carlos Gonzales',
-    pfReqRate: '100%',
-    cuilCuit: '99-99999999-9',
-    email: 'prueba@empresa.com.ar',
-    debin: '999999999',
-    debinState: 'NO EMITIDO',
-    credin: '999999999',
-    credinState: 'NO EMITIDO',
-    reqDate: 'DD-MM-AAAA'
-  }
-];
