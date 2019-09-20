@@ -1,9 +1,10 @@
+
 .page-title {
-  padding: 20px 0 20px 15px;
+  padding: 15px 0 15px 0;
   font-size: 20px;
   font-weight: 300;
   background-color: #039be5;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #fff;
   text-align: center;
 }
@@ -13,9 +14,9 @@
 }
 
 .toolbar {
-  max-width: 970px;
-  margin: 0 auto 3px auto;
-  background-color: #f8f9fa;
+  max-width: 1270px;
+  margin: 0 auto 10px auto;
+  background-color: #f8f8f8;
   padding: 0 20px;
   border-radius: 4px 4px;
 }
@@ -76,12 +77,20 @@
   border-radius: 4px;
 }
 
+.table-container {
+  height: 552px;
+}
+
 .paginated-table-container,
 .table-container,
 .paginator-container {
-  max-width: 970px;
+  max-width: 1270px;
   overflow-x: auto;
   margin: auto;
+}
+
+::ng-deep .mat-paginator-container {
+  background-color: #f8f8f8;
 }
 
 .req-id-cell {
@@ -171,6 +180,40 @@
 .req-date-cell {
   min-width: 170px;
   max-width: 170px;
+}
+
+.actions-cell {
+  min-width: 220px;
+  max-width: 220px;
+}
+
+.mat-table-sticky:last-child {
+  background-color: #f8f8f8;
+}
+
+.action-btn {
+  font-size: 20px;
+  background-color: #039be5;
+  border-radius: 4px;
+  color: #fff;
+  width: 30px;
+  padding: 0 5px;
+}
+
+.file-icon {
+  padding: 0 8px;
+}
+
+.action-btn:hover {
+  cursor: pointer;
+}
+
+.action-btn:active {
+  -ms-transform: translateY(4px);
+  -webkit-transform: translateY(4px);
+  transform: translateY(2px);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: none;
 }
 
 @media (max-width: 450px) {
