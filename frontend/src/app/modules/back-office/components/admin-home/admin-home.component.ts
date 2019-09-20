@@ -41,7 +41,7 @@ export class AdminHomeComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new RequestsDataSource(this.backOfficeApi);
     this.dataSource.loadRequests('', '', 'asc', 0, 30);
-    this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 450px)'])
+    this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 600px)'])
       .pipe(
         map(result => result.matches)
       ).subscribe(
@@ -93,5 +93,83 @@ export class AdminHomeComponent implements OnInit {
     this.tableWidth = tableWidth;
     this.displayedColumns = this.selectedColumns;
   }
+
+
+
+
+
+
+
+
+
+
+
+  removeFilter(filter: any) {
+    console.log(filter);
+    if (filter.key === 'state') {
+      this.selectedFilters = this.selectedFilters.filter(element => element.key == ! 'state' || element.value !== filter.value);
+    } else {
+      this.selectedFilters = this.selectedFilters.filter(element => element.key !== filter.key);
+    }
+  }
+
+  addingFilters() {
+    this.selectedFilters = this.filters;
+  }
+
+  selectable: boolean = false;
+  removable: boolean = true;
+  selectedFilters: any[] = [];
+  filters: any[] = [
+    {
+      key: 'expiration-date',
+      label: 'Vencimiento desde 01-01-2019 hasta 01-02-2019',
+      value: {
+        from: '01-01-2019',
+        to: '01-02-2019',
+      }
+    },
+    {
+      key: 'application-date',
+      label: 'Fecha de solicitud desde 01-01-2019 hasta 01-02-2019',
+      value: {
+        from: '01-01-2019',
+        to: '01-02-2019',
+      }
+    },
+    {
+      key: 'total',
+      label: 'Importe total desde $ 999.999.999,99 hasta $ 999.999.999,99',
+      value: {
+        from: '1.000,00',
+        to: '2.000,00',
+      }
+    },
+    {
+      key: 'state',
+      label: 'Ingresado',
+      value: 'in'
+    },
+    {
+      key: 'state',
+      label: 'Debin solicitado',
+      value: 'debin-requested'
+    },
+    {
+      key: 'state',
+      label: 'Debin confirmado',
+      value: 'debin-confirmed'
+    },
+    {
+      key: 'state',
+      label: 'Constituido',
+      value: 'ft-constituted'
+    },
+    {
+      key: 'state',
+      label: 'Liquidado',
+      value: 'ft-cleared'
+    }
+  ]
 
 }

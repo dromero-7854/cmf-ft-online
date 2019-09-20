@@ -21,7 +21,8 @@ import {
   MatRadioModule,
   MatSnackBarModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatChipsModule
 } from '@angular/material';
 import { MatRippleModule } from '@angular/material/core';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -50,7 +51,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatRadioModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule
   ],
   exports: [
     MatRippleModule,
@@ -74,7 +76,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatRadioModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

@@ -2,48 +2,59 @@
   <span>Administración de solicitudes</span>
 </div>
 <div class="content-container">
-  <div class="d-flex align-items-center toolbar mat-elevation-z2"
-    [ngClass]="{ 'justify-content-between': !isHandset, 'flex-wrap-reverse': isHandset }">
-    <div class="d-flex align-items-center search-container">
-      <mat-form-field class="search-input-field w-100">
-        <input matInput [(ngModel)]="searchValue" [type]="'text'" autocomplete="off">
-      </mat-form-field>
-      <button mat-raised-button class="cmf-mat-btn search-btn" (click)="search()">
-        <mat-icon>search</mat-icon>
-      </button>
+  <div class="d-flex flex-column align-items-center toolbar mat-elevation-z2">
+    <div class="d-flex align-items-center w-100"
+      [ngClass]="{ 'justify-content-between': !isHandset, 'flex-wrap-reverse': isHandset }">
+      <div class="d-flex align-items-center search-container">
+        <mat-form-field class="search-input-field w-100">
+          <input matInput [(ngModel)]="searchValue" [type]="'text'" autocomplete="off">
+        </mat-form-field>
+        <button mat-raised-button class="cmf-mat-btn search-btn mr-1" (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="d-flex align-items-center actions-container" [ngClass]="{ 'justify-content-end w-100': isHandset }">
+        <button mat-raised-button class="cmf-mat-btn filters-btn ml-1 mr-1" (click)="addingFilters()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+        <button mat-raised-button class="cmf-mat-btn filters-btn m-1">
+          <mat-icon>unarchive</mat-icon>
+        </button>
+        <button mat-raised-button class="cmf-mat-btn filters-btn ml-1" #menuTrigger="matMenuTrigger"
+          [matMenuTriggerFor]="columnsMenu">
+          <mat-icon>view_column</mat-icon>
+        </button>
+        <mat-menu #columnsMenu="matMenu" xPosition="before" class="columns-menu">
+          <div class="menu-container" (click)="stopPropagation($event)">
+            <div class="menu-title">
+              <span>Mostrar / Ocultar columnas</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="columns-list-container">
+              <mat-selection-list [(ngModel)]="selectedColumns" (selectionChange)="showHideColumns($event)">
+                <mat-list-option [checkboxPosition]="before" [disabled]="column.fixed" [value]="column.value"
+                  *ngFor="let column of columns">
+                  {{column.label}}
+                </mat-list-option>
+              </mat-selection-list>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="d-flex justify-content-center close-btn-container">
+              <button mat-raised-button class="cmf-mat-btn close-menu-btn"
+                (click)="menuTrigger.closeMenu()">Cerrar</button>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
     </div>
-    <div class="d-flex align-items-center actions-container" [ngClass]="{ 'justify-content-end w-100': isHandset }">
-      <button mat-raised-button class="cmf-mat-btn filters-btn ml-3 mr-1">
-        <mat-icon>filter_list</mat-icon>
-      </button>
-      <button mat-raised-button class="cmf-mat-btn filters-btn m-1">
-        <mat-icon>unarchive</mat-icon>
-      </button>
-      <button mat-raised-button class="cmf-mat-btn filters-btn ml-1" #menuTrigger="matMenuTrigger"
-        [matMenuTriggerFor]="columnsMenu">
-        <mat-icon>view_column</mat-icon>
-      </button>
-      <mat-menu #columnsMenu="matMenu" xPosition="before" class="columns-menu">
-        <div class="menu-container" (click)="stopPropagation($event)">
-          <div class="menu-title">
-            <span>Mostrar / Ocultar columnas</span>
-          </div>
-          <mat-divider></mat-divider>
-          <div class="columns-list-container">
-            <mat-selection-list [(ngModel)]="selectedColumns" (selectionChange)="showHideColumns($event)">
-              <mat-list-option [checkboxPosition]="before" [disabled]="column.fixed" [value]="column.value"
-                *ngFor="let column of columns">
-                {{column.label}}
-              </mat-list-option>
-            </mat-selection-list>
-          </div>
-          <mat-divider></mat-divider>
-          <div class="d-flex justify-content-center close-btn-container">
-            <button mat-raised-button class="cmf-mat-btn close-menu-btn"
-              (click)="menuTrigger.closeMenu()">Cerrar</button>
-          </div>
-        </div>
-      </mat-menu>
+    <div class="filters-container" *ngIf="selectedFilters.length > 0">
+      <mat-chip-list>
+        <mat-chip *ngFor="let filter of selectedFilters" [selectable]="selectable" [removable]="removable"
+          (removed)="removeFilter(filter)">
+          {{filter.label}}
+          <mat-icon matChipRemove *ngIf="removable">close</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
     </div>
   </div>
   <div class="paginated-table-container mat-elevation-z2">
