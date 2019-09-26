@@ -16,7 +16,18 @@
 }
 
 #menu-header {
+  background-color: #1e2129;
   padding: 0;
+}
+
+#menu-header .toggle-btn {
+  color: #fff;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+#menu-header .toggle-btn:hover {
+  cursor: pointer;
 }
 
 #menu-header .header-logo-container {
@@ -28,7 +39,7 @@
 #menu-header .logo {
   display: block;
   height: 45px;
-  margin: 8px auto 5px auto;
+  margin-bottom: 5px;
 }
 
 .mat-toolbar.mat-primary {
@@ -41,6 +52,10 @@
   background-color: #ececf1;
   color: #343a40;
   z-index: 1030;
+}
+
+#content-toolbar .toggle-btn .fa-align-left {
+  font-size: 20px;
 }
 
 #content-toolbar .logo {

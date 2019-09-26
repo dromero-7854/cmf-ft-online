@@ -3,8 +3,13 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
     <mat-toolbar id="menu-header">
-      <div class="header-logo-container">
-        <img src="assets/img/cmf-logo.png" class="logo">
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <div class="toggle-btn" (click)="drawer.toggle()">
+          <i class="fas fa-align-right"></i>
+        </div>
+        <div class="header-logo-container">
+          <img src="assets/img/cmf-logo.png" class="logo">
+        </div>
       </div>
     </mat-toolbar>
     <div class="app-name">
@@ -19,9 +24,9 @@
     <mat-toolbar id="content-toolbar" color="primary" class="mat-elevation-z2">
       <div class="d-flex align-items-center w-100"
         [ngClass]="{ 'justify-content-between': !(drawer.opened), 'justify-content-end': drawer.opened }">
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-          *ngIf="(isHandset$ | async) && !(drawer.opened)">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <button type="button" class="toggle-btn" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+          *ngIf="!(drawer.opened)">
+          <i class="fas fa-align-left"></i>
         </button>
         <img src="assets/img/cmf-blue-logo.png" *ngIf="!(drawer.opened)" class="logo">
         <button type="button" mat-icon-button (click)="logout()">
